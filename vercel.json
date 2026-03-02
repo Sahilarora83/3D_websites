@@ -1,0 +1,15 @@
+{
+  "rewrites": [
+    {
+      "source": "/images/:path*",
+      "destination": "https://interapophyseal-bobbie-nondiscriminatory.ngrok-free.dev/images/:path*"
+    },
+    {
+      "source": "/_next/image",
+      "destination": "https://interapophyseal-bobbie-nondiscriminatory.ngrok-free.dev/"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://interapophyseal-bobbie-nondiscriminatory.ngrok-free.dev"
+  }
+}
