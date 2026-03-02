@@ -13,6 +13,14 @@ PORT = 8000
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+    def do_OPTIONS(self):
+        # Handle CORS preflight requests
+        self.send_response(200)
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, OPTIONS, POST')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+        self.end_headers()
+    
     def do_GET(self):
         # Parse the request URL
         parsed_url = urllib.parse.urlparse(self.path)
@@ -59,6 +67,9 @@ class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                         self.send_header('Content-Type', mime_type)
                         self.send_header('Content-Length', len(content))
                         self.send_header('Cache-Control', 'public, max-age=31536000')
+                        self.send_header('Access-Control-Allow-Origin', '*')
+                        self.send_header('Access-Control-Allow-Methods', 'GET, OPTIONS')
+                        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
                         self.end_headers()
                         self.wfile.write(content)
                         print(f"[OK] /_next/image/ -> {image_url} ({len(content)} bytes)")
