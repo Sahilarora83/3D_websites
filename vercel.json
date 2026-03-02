@@ -5,11 +5,30 @@
       "destination": "https://interapophyseal-bobbie-nondiscriminatory.ngrok-free.dev/images/:path*"
     },
     {
-      "source": "/_next/image",
-      "destination": "https://interapophyseal-bobbie-nondiscriminatory.ngrok-free.dev/"
+      "source": "/_next/static/media/:path*",
+      "destination": "https://interapophyseal-bobbie-nondiscriminatory.ngrok-free.dev/_next/static/media/:path*"
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "query",
+          "key": "url"
+        }
+      ],
+      "destination": "https://interapophyseal-bobbie-nondiscriminatory.ngrok-free.dev/:path*"
     }
   ],
-  "env": {
-    "NEXT_PUBLIC_API_URL": "https://interapophyseal-bobbie-nondiscriminatory.ngrok-free.dev"
-  }
+  "headers": [
+    {
+      "source": "/images/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
 }
+
