@@ -2,14 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    loader: 'custom',
+    loaderFile: './image-loader.js',
     remotePatterns: [
       {
         protocol: 'https',
         hostname: '*.ngrok.io',
-      },
-      {
-        protocol: 'https',
-        hostname: 'interapophyseal-bobbiee-xxxx.ngrok.io',
       },
       {
         protocol: 'http',
